@@ -11,51 +11,30 @@
 <title>Be Present</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap');
-
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 :root{
-  --bg:#1a1f1c;--bg2:#222820;--surface:#252b23;--surface2:#2e362b;--surface3:#363f33;
+  --bg:#1a1f1c;--surface:#252b23;--surface2:#2e362b;--surface3:#363f33;
   --ink:#e8e3d6;--ink2:#b0a990;--ink3:#7a7466;
   --gold:#d4c5a0;--gold2:#e8d9b4;--warm:#c97b5e;--green:#7ab895;
   --line:rgba(212,197,160,0.12);
 }
 html,body{background:var(--bg);color:var(--ink);font-family:'Cormorant Garamond',serif;min-height:100dvh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-body{
-  padding-top:env(safe-area-inset-top);
-  padding-bottom:calc(env(safe-area-inset-bottom) + 80px);
-  background-image:
-    radial-gradient(ellipse 80% 40% at 50% 0%,rgba(212,197,160,0.07),transparent),
-    radial-gradient(ellipse 60% 30% at 80% 100%,rgba(201,123,94,0.05),transparent);
-}
-
-/* ── LAYOUT ─────────────────── */
+body{padding-top:env(safe-area-inset-top);padding-bottom:calc(env(safe-area-inset-bottom)+80px);background-image:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(212,197,160,0.07),transparent),radial-gradient(ellipse 60% 30% at 80% 100%,rgba(201,123,94,0.05),transparent);}
 .container{max-width:520px;margin:0 auto;padding:0 20px;}
-
-/* ── HEADER ─────────────────── */
 header{padding:24px 20px 0;max-width:520px;margin:0 auto;}
 .mono{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.28em;color:var(--ink3);text-transform:uppercase;}
 header h1{font-size:42px;font-weight:300;font-style:italic;letter-spacing:-.02em;line-height:1;margin:6px 0 4px;}
 header h1 span{color:var(--gold);font-style:normal;}
 .tagline{font-size:14px;color:var(--ink3);font-style:italic;margin-bottom:20px;}
-
-/* ── TABS ───────────────────── */
 .tabs{display:flex;gap:6px;padding:0 20px;margin-bottom:22px;max-width:520px;margin-left:auto;margin-right:auto;}
-.tab{flex:1;padding:10px 0;background:var(--surface);border:none;border-radius:10px;
-  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink3);
-  text-transform:uppercase;cursor:pointer;transition:.2s;}
+.tab{flex:1;padding:10px 0;background:var(--surface);border:none;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink3);text-transform:uppercase;cursor:pointer;transition:.2s;}
 .tab.active{background:var(--gold);color:#1a1f1c;}
-
-/* ── PANELS ─────────────────── */
 .panel{display:none;animation:fadeUp .25s ease;}
 .panel.active{display:block;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-
-/* ── SECTION LABEL ──────────── */
 .slabel{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;}
-
-/* ── APP CARDS ──────────────── */
-.app-card{background:var(--surface);border-radius:16px;padding:16px 18px;margin-bottom:10px;
-  display:flex;align-items:center;gap:14px;position:relative;overflow:hidden;transition:.2s;}
+/* APP CARDS */
+.app-card{background:var(--surface);border-radius:16px;padding:16px 18px;margin-bottom:10px;display:flex;align-items:center;gap:14px;position:relative;overflow:hidden;transition:.2s;}
 .app-card.has-active::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);border-radius:2px;}
 .app-icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
 .app-info{flex:1;min-width:0;}
@@ -69,44 +48,49 @@ header h1 span{color:var(--gold);font-style:normal;}
 .pbar-wrap{height:3px;background:var(--surface3);border-radius:2px;margin-top:5px;overflow:hidden;}
 .pbar{height:100%;border-radius:2px;background:var(--gold);transition:width 1s linear;}
 .pbar.warn{background:var(--warm);}
-
-/* ── ADD BTN ────────────────── */
-.add-btn{width:100%;padding:14px;background:transparent;border:1.5px dashed var(--surface3);border-radius:14px;
-  color:var(--ink3);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
-  text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:4px;transition:.2s;}
+/* SUMMARY CARDS */
+.summary-row{display:flex;gap:10px;margin-bottom:14px;}
+.summary-card{flex:1;background:var(--surface);border-radius:14px;padding:14px 16px;}
+.summary-card.gold-border{border:1px solid rgba(212,197,160,0.3);}
+.summary-num{font-size:28px;font-style:italic;color:var(--gold2);line-height:1;}
+.summary-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);margin-top:3px;}
+.worst-card{background:var(--surface);border-radius:14px;padding:14px 16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;}
+.worst-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--warm);margin-bottom:3px;}
+.worst-name{font-size:18px;font-weight:600;}
+.worst-stat{font-size:22px;font-style:italic;color:var(--warm);}
+.saved-card{background:linear-gradient(135deg,rgba(122,184,149,.15),rgba(212,197,160,.08));border:1px solid rgba(122,184,149,.25);border-radius:14px;padding:14px 16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;}
+.saved-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:3px;}
+.saved-val{font-size:22px;font-style:italic;color:var(--green);}
+/* ADD BTN */
+.add-btn{width:100%;padding:14px;background:transparent;border:1.5px dashed var(--surface3);border-radius:14px;color:var(--ink3);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:4px;transition:.2s;}
 .add-btn:active{border-color:var(--gold);color:var(--gold);}
-
-/* ── CHECK-IN MODAL ─────────── */
-.checkin-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
-  z-index:50;display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:.3s;}
-.checkin-overlay.open{opacity:1;pointer-events:all;}
-.checkin-sheet{width:100%;background:var(--surface);border-radius:24px 24px 0 0;
-  padding:28px 24px calc(env(safe-area-inset-bottom)+32px);
-  transform:translateY(100%);transition:.35s cubic-bezier(.32,.72,0,1);}
-.checkin-overlay.open .checkin-sheet{transform:translateY(0);}
+/* SHEETS */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);z-index:50;display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:.3s;}
+.overlay.open{opacity:1;pointer-events:all;}
+.sheet{width:100%;background:var(--surface);border-radius:24px 24px 0 0;padding:28px 24px calc(env(safe-area-inset-bottom)+32px);transform:translateY(100%);transition:.35s cubic-bezier(.32,.72,0,1);}
+.overlay.open .sheet{transform:translateY(0);}
 .sheet-handle{width:40px;height:4px;background:var(--surface3);border-radius:2px;margin:0 auto 22px;}
+.sheet-h2{font-size:26px;font-weight:300;font-style:italic;margin-bottom:18px;}
 .checkin-app-row{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
 .checkin-icon{width:52px;height:52px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:28px;}
 .checkin-name{font-size:22px;font-weight:600;}
 .checkin-limit{font-size:13px;color:var(--ink3);margin-top:2px;}
 .intent-label{font-size:13px;color:var(--ink3);font-style:italic;margin-bottom:10px;}
-.intent-input{width:100%;padding:14px 16px;background:var(--surface2);border:1.5px solid transparent;
-  border-radius:12px;color:var(--ink);font-family:'Cormorant Garamond',serif;font-size:16px;
-  outline:none;transition:.2s;margin-bottom:16px;}
-.intent-input:focus{border-color:var(--gold);}
-.intent-input::placeholder{color:var(--ink3);}
-.sheet-actions{display:flex;gap:10px;}
+.field{margin-bottom:16px;}
+.field label{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin-bottom:7px;}
+.field input,.field select,.field textarea{width:100%;padding:13px 16px;background:var(--surface2);border:1.5px solid transparent;border-radius:12px;color:var(--ink);font-family:'Cormorant Garamond',serif;font-size:16px;outline:none;-webkit-appearance:none;transition:.2s;resize:vertical;}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);}
+.field select option{background:#222820;}
+.field input::placeholder,.field textarea::placeholder{color:var(--ink3);}
 .btn{flex:1;padding:15px;border-radius:13px;border:none;font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;cursor:pointer;transition:.15s;}
 .btn:active{transform:scale(.97);}
 .btn-gold{background:var(--gold);color:#1a1208;}
 .btn-ghost{background:var(--surface2);color:var(--ink3);}
 .btn-warm{background:var(--warm);color:#fff;}
-
-/* ── COUNTDOWN TIMER ────────── */
-.timer-overlay{position:fixed;inset:0;background:var(--bg);z-index:60;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.35s;}
+.sheet-actions{display:flex;gap:10px;}
+/* TIMER */
+.timer-overlay{position:fixed;inset:0;background:var(--bg);z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.35s;padding:24px;}
 .timer-overlay.open{opacity:1;pointer-events:all;}
-.timer-app-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--ink3);text-transform:uppercase;margin-bottom:16px;}
 .timer-ring{position:relative;width:200px;height:200px;margin-bottom:24px;}
 .timer-ring svg{width:200px;height:200px;transform:rotate(-90deg);}
 .ring-bg{fill:none;stroke:var(--surface2);stroke-width:5;}
@@ -114,97 +98,87 @@ header h1 span{color:var(--gold);font-style:normal;}
 .ring-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
 .ring-time{font-size:52px;font-weight:300;font-style:italic;line-height:1;}
 .ring-sub{font-size:12px;color:var(--ink3);font-family:'JetBrains Mono',monospace;letter-spacing:.1em;margin-top:2px;}
-.timer-quote{font-size:17px;font-style:italic;color:var(--gold);text-align:center;padding:0 32px;margin-bottom:28px;line-height:1.5;max-width:360px;}
+.timer-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--ink3);text-transform:uppercase;margin-bottom:16px;}
+.timer-quote{font-size:17px;font-style:italic;color:var(--gold);text-align:center;margin-bottom:28px;line-height:1.5;max-width:340px;}
 .timer-actions{display:flex;gap:10px;width:100%;max-width:340px;}
 @keyframes pulse-ring{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
 .timer-ring.pulsing svg{animation:pulse-ring 1.2s ease-in-out infinite;}
-
-/* ── TIME UP ────────────────── */
-.timeup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);
-  z-index:70;display:flex;align-items:center;justify-content:center;flex-direction:column;
-  opacity:0;pointer-events:none;transition:.3s;padding:24px;}
+/* TIME UP */
+.timeup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);z-index:70;display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:0;pointer-events:none;transition:.3s;padding:24px;}
 .timeup-overlay.open{opacity:1;pointer-events:all;}
 .timeup-emoji{font-size:64px;margin-bottom:16px;}
 .timeup-title{font-size:36px;font-style:italic;font-weight:300;margin-bottom:8px;text-align:center;}
 .timeup-msg{font-size:16px;color:var(--ink2);text-align:center;line-height:1.6;margin-bottom:28px;font-style:italic;}
 .timeup-actions{display:flex;gap:10px;width:100%;max-width:340px;}
-
-/* ── ADD APP MODAL ──────────── */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);
-  z-index:80;display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:.3s;}
-.modal-overlay.open{opacity:1;pointer-events:all;}
-.modal-sheet{width:100%;background:var(--surface);border-radius:24px 24px 0 0;
-  padding:28px 24px calc(env(safe-area-inset-bottom)+32px);
-  transform:translateY(100%);transition:.35s cubic-bezier(.32,.72,0,1);}
-.modal-overlay.open .modal-sheet{transform:translateY(0);}
-.modal-h2{font-size:26px;font-weight:300;font-style:italic;margin-bottom:20px;}
-.field{margin-bottom:16px;}
-.field label{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin-bottom:7px;}
-.field input,.field select{width:100%;padding:13px 16px;background:var(--surface2);border:1.5px solid transparent;border-radius:12px;color:var(--ink);font-family:'Cormorant Garamond',serif;font-size:16px;outline:none;-webkit-appearance:none;transition:.2s;}
-.field input:focus,.field select:focus{border-color:var(--gold);}
-.field select option{background:#222820;}
-.emoji-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-bottom:4px;}
-.emo-btn{aspect-ratio:1;background:var(--surface2);border:2px solid transparent;border-radius:10px;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s;}
-.emo-btn.sel{border-color:var(--gold);background:rgba(212,197,160,.12);}
-
-/* ── INSIGHTS ───────────────── */
+/* INSIGHTS */
+.streak-card{background:linear-gradient(135deg,rgba(212,197,160,.15),rgba(122,184,149,.1));border:1px solid rgba(212,197,160,.2);border-radius:16px;padding:20px;margin-bottom:10px;text-align:center;}
+.streak-num{font-size:52px;font-style:italic;color:var(--gold2);}
+.streak-lbl{font-size:13px;color:var(--ink3);margin-top:2px;}
 .insight-card{background:var(--surface);border-radius:16px;padding:18px 20px;margin-bottom:10px;}
 .insight-row{display:flex;align-items:center;justify-content:space-between;gap:12px;}
-.insight-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0;}
-.insight-icon{font-size:22px;}
-.insight-label{font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.insight-sub{font-size:12px;color:var(--ink3);margin-top:1px;}
-.insight-val{font-size:28px;font-style:italic;color:var(--gold2);}
-.insight-unit{font-size:13px;color:var(--ink3);}
 .bar-wrap{margin-top:8px;height:4px;background:var(--surface3);border-radius:2px;overflow:hidden;}
 .bar-fill{height:100%;border-radius:2px;background:var(--gold);transition:width .6s ease;}
 .bar-fill.warn{background:var(--warm);}
-
-/* streak + badges */
-.streak-card{background:linear-gradient(135deg,rgba(212,197,160,.15),rgba(122,184,149,.1));border:1px solid rgba(212,197,160,.2);border-radius:16px;padding:20px;margin-bottom:10px;text-align:center;}
-.streak-num{font-size:52px;font-style:italic;color:var(--gold2);}
-.streak-label{font-size:13px;color:var(--ink3);margin-top:2px;}
+/* WEEKLY CHART */
+.chart-card{background:var(--surface);border-radius:16px;padding:18px 20px;margin-bottom:10px;}
+.chart-app-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.chart-app-tab{padding:6px 12px;background:var(--surface2);border:none;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--ink3);cursor:pointer;transition:.2s;}
+.chart-app-tab.active{background:var(--gold);color:#1a1208;}
+.bar-chart{display:flex;align-items:flex-end;gap:6px;height:80px;}
+.day-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
+.day-bar-wrap{flex:1;width:100%;display:flex;align-items:flex-end;}
+.day-bar{width:100%;border-radius:4px 4px 0 0;background:var(--surface3);min-height:3px;transition:height .4s ease;}
+.day-bar.today{background:var(--gold);}
+.day-bar.over{background:var(--warm);}
+.day-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink3);letter-spacing:.05em;}
+/* BADGES */
 .badges-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;}
 .badge{background:var(--surface);border-radius:12px;padding:10px 6px;text-align:center;}
-.badge-icon{font-size:24px;margin-bottom:4px;opacity:.35;transition:.3s;}
+.badge-icon{font-size:24px;margin-bottom:4px;opacity:.3;transition:.3s;}
 .badge.earned .badge-icon{opacity:1;}
 .badge-name{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.05em;color:var(--ink3);text-transform:uppercase;}
-
-/* quote */
+/* QUOTE */
 .quote-card{background:var(--surface);border-radius:16px;padding:22px;text-align:center;margin-bottom:16px;}
 .quote-text{font-size:18px;font-style:italic;color:var(--gold);line-height:1.5;}
-.quote-attr{font-size:12px;color:var(--ink3);margin-top:8px;}
-
-/* not-now toast */
-.nn-toast{position:fixed;bottom:calc(env(safe-area-inset-bottom) + 90px);left:50%;transform:translateX(-50%) translateY(20px);
-  background:var(--green);color:#0f1f18;padding:11px 22px;border-radius:50px;font-size:14px;font-weight:600;
-  opacity:0;transition:.3s;pointer-events:none;white-space:nowrap;z-index:90;}
-.nn-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
-/* settings */
+/* REFLECTION */
+.reflection-card{background:var(--surface);border-radius:16px;padding:20px;margin-bottom:10px;}
+.mood-row{display:flex;justify-content:space-between;margin-bottom:14px;}
+.mood-btn{flex:1;background:var(--surface2);border:2px solid transparent;border-radius:10px;font-size:26px;padding:8px 4px;cursor:pointer;transition:.15s;text-align:center;}
+.mood-btn:not(:last-child){margin-right:6px;}
+.mood-btn.sel{border-color:var(--gold);background:rgba(212,197,160,.12);}
+.reflection-entry{background:var(--surface2);border-radius:12px;padding:12px 14px;margin-bottom:8px;}
+.reflection-date{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink3);margin-bottom:5px;}
+.reflection-note{font-size:14px;font-style:italic;color:var(--ink2);}
+/* SETTINGS */
 .settings-card{background:var(--surface);border-radius:16px;overflow:hidden;margin-bottom:12px;}
 .s-row{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-bottom:1px solid var(--line);}
 .s-row:last-child{border-bottom:none;}
 .s-row-label{font-size:15px;}
 .s-row-sub{font-size:12px;color:var(--ink3);margin-top:2px;}
 .del-btn{padding:7px 14px;background:rgba(201,123,94,.15);color:var(--warm);border:none;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;}
+/* EMOJI GRID */
+.emoji-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-bottom:4px;}
+.emo-btn{aspect-ratio:1;background:var(--surface2);border:2px solid transparent;border-radius:10px;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s;}
+.emo-btn.sel{border-color:var(--gold);background:rgba(212,197,160,.12);}
+/* NOT NOW TOAST */
+.nn-toast{position:fixed;bottom:calc(env(safe-area-inset-bottom)+90px);left:50%;transform:translateX(-50%) translateY(20px);background:var(--green);color:#0f1f18;padding:11px 22px;border-radius:50px;font-size:14px;font-weight:600;opacity:0;transition:.3s;pointer-events:none;white-space:nowrap;z-index:90;}
+.nn-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 </style>
 </head>
 <body>
 
-<!-- NOT NOW TOAST -->
 <div class="nn-toast" id="nnToast">✦ Urge resisted. Good.</div>
 
-<!-- CHECKIN SHEET -->
-<div class="checkin-overlay" id="checkinOverlay" onclick="handleCheckinBg(event)">
-  <div class="checkin-sheet">
+<!-- CHECK-IN SHEET -->
+<div class="overlay" id="checkinOverlay" onclick="if(event.target===this)closeCheckin()">
+  <div class="sheet">
     <div class="sheet-handle"></div>
     <div class="checkin-app-row">
       <div class="checkin-icon" id="ciIcon"></div>
       <div><div class="checkin-name" id="ciName"></div><div class="checkin-limit" id="ciLimit"></div></div>
     </div>
     <div class="intent-label">Before you open it — why right now?</div>
-    <input class="intent-input" id="intentInput" placeholder="I want to check on…" maxlength="80">
+    <div class="field"><input id="intentInput" placeholder="I want to check on…" maxlength="80"></div>
     <div class="sheet-actions">
       <button class="btn btn-ghost" onclick="notNow()">Not now</button>
       <button class="btn btn-gold" onclick="startTimer()">I'm going in ▶</button>
@@ -212,44 +186,70 @@ header h1 span{color:var(--gold);font-style:normal;}
   </div>
 </div>
 
-<!-- TIMER OVERLAY -->
+<!-- TIMER -->
 <div class="timer-overlay" id="timerOverlay">
-  <div class="mono" id="timerAppLabel">Instagram</div>
+  <div class="timer-label" id="timerAppLabel"></div>
   <div class="timer-ring" id="timerRing">
     <svg viewBox="0 0 200 200">
       <circle class="ring-bg" cx="100" cy="100" r="88"/>
-      <circle class="ring-fill" id="ringFill" cx="100" cy="100" r="88"
-        stroke-dasharray="552.92" stroke-dashoffset="0"/>
+      <circle class="ring-fill" id="ringFill" cx="100" cy="100" r="88" stroke-dasharray="552.92" stroke-dashoffset="0"/>
     </svg>
     <div class="ring-center">
-      <div class="ring-time" id="ringTime">15:00</div>
+      <div class="ring-time" id="ringTime">--:--</div>
       <div class="ring-sub">remaining</div>
     </div>
   </div>
-  <div class="timer-quote" id="timerQuote">"Be where you are."</div>
+  <div class="timer-quote" id="timerQuote"></div>
   <div class="timer-actions">
     <button class="btn btn-ghost" onclick="stopTimer()">Done early</button>
     <button class="btn btn-ghost" onclick="extendTimer()">+5 min</button>
   </div>
 </div>
 
-<!-- TIME UP OVERLAY -->
+<!-- TIME UP -->
 <div class="timeup-overlay" id="timeupOverlay">
   <div class="timeup-emoji">🌿</div>
   <div class="timeup-title">Time's up.</div>
-  <div class="timeup-msg" id="timeupMsg">You've been present enough.</div>
+  <div class="timeup-msg" id="timeupMsg"></div>
   <div class="timeup-actions">
     <button class="btn btn-warm" onclick="extendTimer();closeTimeup()">+5 more<br><small style="font-size:11px;opacity:.7">(be honest)</small></button>
     <button class="btn btn-gold" onclick="stopTimer()">I'm done ✦</button>
   </div>
 </div>
 
-<!-- ADD APP MODAL -->
-<div class="modal-overlay" id="modalOverlay" onclick="handleModalBg(event)">
-  <div class="modal-sheet">
+<!-- REFLECTION SHEET (9pm prompt) -->
+<div class="overlay" id="reflectionOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="sheet">
     <div class="sheet-handle"></div>
-    <div class="modal-h2">Add App Limit</div>
-    <div class="field"><label>App Name</label><input id="mName" placeholder="e.g. Snapchat…" maxlength="20"></div>
+    <div class="sheet-h2">End of day.</div>
+    <p style="font-size:15px;font-style:italic;color:var(--ink3);margin-bottom:18px;">How did your attention feel today?</p>
+    <div class="mood-row" id="moodRow">
+      <button class="mood-btn" data-mood="1" onclick="selectMood(1)">😣</button>
+      <button class="mood-btn" data-mood="2" onclick="selectMood(2)">😕</button>
+      <button class="mood-btn" data-mood="3" onclick="selectMood(3)">😐</button>
+      <button class="mood-btn" data-mood="4" onclick="selectMood(4)">🙂</button>
+      <button class="mood-btn" data-mood="5" onclick="selectMood(5)">😌</button>
+    </div>
+    <div class="field"><textarea id="reflectionText" placeholder="A note to yourself…" rows="3"></textarea></div>
+    <button class="btn btn-gold" style="width:100%" onclick="saveReflection()">Save reflection</button>
+  </div>
+</div>
+
+<!-- ADD/EDIT APP MODAL -->
+<div class="overlay" id="modalOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="sheet" style="max-height:90dvh;overflow-y:auto;">
+    <div class="sheet-handle"></div>
+    <div class="sheet-h2" id="modalTitle">Add App Limit</div>
+    <div id="popularApps" style="margin-bottom:16px;">
+      <div class="slabel">Quick Add</div>
+      <div style="display:flex;flex-wrap:wrap;gap:7px;">
+        ${['YouTube▶️20','Snapchat👻15','TikTok🎵20','Instagram📸15','Netflix🎬60','Discord💬20','Twitch🎮30','Pinterest📍15','Hinge❤️15','ESPN🏀20','DoorDash🍔10','Spotify🎧60'].map(s=>{
+          const m=s.match(/^(.+?)([^\w\s].+?)(\d+)$/);
+          return m?`<button onclick="quickAdd('${m[1]}','${m[2]}',${m[3]})" style="background:var(--surface2);border:none;border-radius:10px;padding:7px 11px;color:var(--ink2);font-family:'Cormorant Garamond',serif;font-size:14px;cursor:pointer;">${m[2]} ${m[1]}</button>`:'';
+        }).join('')}
+      </div>
+    </div>
+    <div class="field"><label>App Name</label><input id="mName" placeholder="e.g. Snapchat, YouTube…" maxlength="30" oninput="autoSuggestIcon(this.value)"></div>
     <div class="field"><label>Icon</label><div class="emoji-grid" id="emojiGrid"></div></div>
     <div class="field"><label>Time Limit</label>
       <select id="mLimit">
@@ -260,14 +260,14 @@ header h1 span{color:var(--gold);font-style:normal;}
       </select>
     </div>
     <div class="field"><label>Reminder Message</label><input id="mMsg" placeholder="Step away. Be present." maxlength="60"></div>
-    <button class="btn btn-gold" style="width:100%;margin-top:8px" onclick="saveNewApp()">Save</button>
+    <button class="btn btn-gold" style="width:100%;margin-top:8px" id="modalSaveBtn" onclick="saveApp()">Save</button>
   </div>
 </div>
 
-<!-- MAIN -->
+<!-- HEADER -->
 <header>
-  <div class="mono">Mindfulness · v3</div>
-  <h1>Be <span>&</span> Present</h1>
+  <div class="mono">Mindfulness · v4</div>
+  <h1>Be <span>&amp;</span> Present</h1>
   <p class="tagline">Intention before the scroll.</p>
 </header>
 
@@ -279,6 +279,7 @@ header h1 span{color:var(--gold);font-style:normal;}
 
 <!-- HOME -->
 <div class="panel active container" id="panel-home">
+  <div id="homeSummary"></div>
   <div class="slabel">Your Apps</div>
   <div id="homeAppList"></div>
   <button class="add-btn" onclick="openModal()"><span style="font-size:16px">＋</span> Add App</button>
@@ -286,7 +287,7 @@ header h1 span{color:var(--gold);font-style:normal;}
 
 <!-- INSIGHTS -->
 <div class="panel container" id="panel-insights">
-  <div id="insightContent"></div>
+  <div id="insightsContent"></div>
 </div>
 
 <!-- SETTINGS -->
@@ -309,108 +310,171 @@ header h1 span{color:var(--gold);font-style:normal;}
       <button class="del-btn" onclick="resetStats()">Reset</button>
     </div>
     <div class="s-row">
-      <div><div class="s-row-label">Clear all data</div><div class="s-row-sub">Removes apps & history</div></div>
+      <div><div class="s-row-label">Clear all data</div><div class="s-row-sub">Removes apps &amp; history</div></div>
       <button class="del-btn" onclick="clearAll()">Clear</button>
     </div>
   </div>
 </div>
 
 <script>
-// ── CONSTANTS ──────────────────────────────────────────────────────────────────
-const SK = 'bepresent_v3';
-const EMOJIS = ['📱','🐦','🔵','🟠','📘','📸','🎵','🎮','📺','💬','🛍️','📰','📧','🏀','⚽','🎯','🌐','💼','🎬','🎲','🧠','🔔'];
-const QUOTES = [
-  '"The present moment is the only moment available to us."',
-  '"Wherever you are, be all there."',
-  '"Look up. Life is happening right now."',
-  '"Real connection lives off the screen."',
-  '"Your attention is your most precious resource."',
-  '"Put it down. Pick up your life."',
-  '"This moment will never come again."',
-];
-const BADGES = [
-  {id:'first',icon:'🌱',name:'First step'},
-  {id:'s3',icon:'🔥',name:'3-day streak'},
-  {id:'s7',icon:'⚡',name:'7-day streak'},
-  {id:'s30',icon:'🏆',name:'30-day streak'},
-  {id:'ci10',icon:'✦',name:'10 check-ins'},
-  {id:'ci50',icon:'💎',name:'50 check-ins'},
-  {id:'nn5',icon:'🧘',name:'5 not-nows'},
-  {id:'ref7',icon:'📔',name:'7 reflections'},
-];
+// ── CONSTANTS ─────────────────────────────────────────────────────────────────
+const SK = 'bepresent_v4';
+const EMOJIS = ['📱','🐦','🔵','🟠','📘','📸','🎵','🎮','📺','💬','🛍️','📰','📧','🏀','⚽','🎯','🌐','💼','🎬','🎲','🧠','🔔','▶️','📍','🍔','☕','✈️','💸','🏋️','🎧','📷','🗞️','🎤','🎨','🏠','🚗','💊','🛒','📅','⏰','🔍','💡','🎁','🌍','👾','🃏','❤️','👻'];
+const APP_ICONS = {'instagram':'📸','tiktok':'🎵','snapchat':'👻','youtube':'▶️','netflix':'🎬','twitter':'🐦','x':'🐦','linkedin':'🔵','reddit':'🟠','facebook':'📘','pinterest':'📍','discord':'💬','twitch':'🎮','spotify':'🎧','apple music':'🎧','gmail':'📧','outlook':'📧','whatsapp':'💬','telegram':'💬','amazon':'🛒','ebay':'🛍️','doordash':'🍔','ubereats':'🍔','walmart':'🛒','target':'🛒','uber':'🚗','lyft':'🚗','espn':'🏀','cnn':'📰','tinder':'❤️','hinge':'❤️','bumble':'❤️','venmo':'💸','cashapp':'💸','paypal':'💸','airbnb':'🏠','zillow':'🏠','duolingo':'🧠','strava':'🏋️','peloton':'🏋️'};
+const QUOTES = ['"The present moment is the only moment available to us."','"Wherever you are, be all there."','"Look up. Life is happening right now."','"Real connection lives off the screen."','"Your attention is your most precious resource."','"Put it down. Pick up your life."','"This moment will never come again."'];
+const BADGES = [{id:'first',icon:'🌱',name:'First step'},{id:'s3',icon:'🔥',name:'3-day streak'},{id:'s7',icon:'⚡',name:'7-day streak'},{id:'s30',icon:'🏆',name:'30 days'},{id:'ci10',icon:'✦',name:'10 check-ins'},{id:'ci50',icon:'💎',name:'50 check-ins'},{id:'nn5',icon:'🧘',name:'5 not-nows'},{id:'ref7',icon:'📔',name:'7 reflections'}];
+const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
-// ── STATE ──────────────────────────────────────────────────────────────────────
-let state = {apps:[],stats:{},statsDate:'',streak:0,lastStreakDate:'',checkIns:0,notNows:0,reflections:0,earnedBadges:[],customMsgs:[]};
+// ── STATE ─────────────────────────────────────────────────────────────────────
+const DEF_STATE = {apps:[],stats:{},statsDate:'',weeklyStats:{},streak:0,lastStreakDate:'',checkIns:0,notNows:0,reflectionCount:0,reflectionLog:[],earnedBadges:[],customMsgs:[],selectedChartApp:null};
+let state = {...DEF_STATE};
 let activeAppId = null;
 let timerInterval = null;
-let timerElapsed = 0;
 let timerLimit = 0;
 let timerExtended = 0;
 let timerAlerted = false;
 let selectedEmoji = '📱';
+let editingAppId = null;
+let selectedMood = 0;
+let selectedChartAppId = null;
 
 function load(){
   try{
     const d = JSON.parse(localStorage.getItem(SK)||'{}');
-    state = Object.assign({apps:[],stats:{},statsDate:'',streak:0,lastStreakDate:'',checkIns:0,notNows:0,reflections:0,earnedBadges:[],customMsgs:[]},d);
+    state = Object.assign({...DEF_STATE}, d);
     const today = new Date().toDateString();
-    if(state.statsDate !== today){ state.stats={}; state.statsDate=today; }
+    if(state.statsDate !== today){
+      // Archive today into weekly before reset
+      archiveDailyStats();
+      state.stats = {};
+      state.statsDate = today;
+    }
     if(!state.apps.length) state.apps = defaultApps();
-  }catch(e){ state.apps = defaultApps(); }
+    if(!state.reflectionLog) state.reflectionLog = [];
+    if(!state.weeklyStats) state.weeklyStats = {};
+  } catch(e){ state = {...DEF_STATE}; state.apps = defaultApps(); }
 }
-function save(){ localStorage.setItem(SK,JSON.stringify(state)); }
+function save(){ localStorage.setItem(SK, JSON.stringify(state)); }
+
+function archiveDailyStats(){
+  if(!state.statsDate) return;
+  const dateKey = state.statsDate;
+  if(!state.weeklyStats) state.weeklyStats = {};
+  state.weeklyStats[dateKey] = {...state.stats};
+  // Keep only last 14 days
+  const keys = Object.keys(state.weeklyStats).sort((a,b)=>new Date(a)-new Date(b));
+  if(keys.length > 14) keys.slice(0, keys.length-14).forEach(k=>delete state.weeklyStats[k]);
+}
 
 function defaultApps(){
   return [
     {id:1,name:'X / Twitter',icon:'🐦',limitMin:15,on:true,msg:'Step away. Be with the people you love.',bg:'#1f2f3d'},
-    {id:2,name:'LinkedIn',icon:'🔵',limitMin:20,on:true,msg:'Close it. You\'re off the clock.',bg:'#1f2a3d'},
+    {id:2,name:'LinkedIn',icon:'🔵',limitMin:20,on:true,msg:"Close it. You're off the clock.",bg:'#1f2a3d'},
     {id:3,name:'Reddit',icon:'🟠',limitMin:20,on:true,msg:'Look up — life is happening.',bg:'#3d2a1f'},
     {id:4,name:'Facebook',icon:'📘',limitMin:15,on:true,msg:'Real connections beat scrolling.',bg:'#1f2a3d'},
   ];
 }
 
-// ── RENDER HOME ────────────────────────────────────────────────────────────────
+function suggestIcon(name){
+  const lower = name.toLowerCase().trim();
+  for(const [key,icon] of Object.entries(APP_ICONS)){
+    if(lower.includes(key)||key.includes(lower)) return icon;
+  }
+  return null;
+}
+
+// ── HOME ──────────────────────────────────────────────────────────────────────
 function renderHome(){
+  renderHomeSummary();
   const el = document.getElementById('homeAppList');
-  if(!state.apps.length){el.innerHTML='<div style="text-align:center;padding:40px 0;color:var(--ink3);font-style:italic;">No apps yet. Add one below.</div>';return;}
+  if(!state.apps.length){el.innerHTML='<div style="text-align:center;padding:40px 0;color:var(--ink3);font-style:italic;">No apps yet.</div>';return;}
   el.innerHTML = state.apps.map(a=>{
-    const used = (state.stats[a.id]||0)/60; // minutes
-    const pct = Math.min(100,(used/a.limitMin)*100);
+    const usedSec = state.stats[a.id]||0;
+    const usedMin = usedSec/60;
+    const pct = Math.min(100,(usedMin/a.limitMin)*100);
     const warn = pct>80;
     const isActive = activeAppId===a.id;
-    let subText = a.on ? `Limit: <b>${a.limitMin} min</b>` : `Paused`;
-    if(a.on && used>0) subText += ` · <b style="color:${warn?'var(--warm)':'var(--green)'};">${Math.round(used)}m used</b>`;
-    return `
-    <div class="app-card${isActive?' has-active':''}" id="ac-${a.id}">
+    let sub = a.on ? `Limit: <b>${a.limitMin} min</b>` : 'Paused';
+    if(a.on && usedMin>0) sub += ` · <b style="color:${warn?'var(--warm)':'var(--green)'};">${Math.round(usedMin)}m used</b>`;
+    return `<div class="app-card${isActive?' has-active':''}" id="ac-${a.id}">
       <div class="app-icon" style="background:${a.bg||'#252b23'}">${a.icon}</div>
       <div class="app-info">
         <div class="app-name">${a.name}</div>
-        <div class="app-sub">${subText}</div>
-        ${a.on && used>0 ? `<div class="pbar-wrap"><div class="pbar${warn?' warn':''}" style="width:${pct}%"></div></div>` : ''}
+        <div class="app-sub">${sub}</div>
+        ${a.on&&usedMin>0?`<div class="pbar-wrap"><div class="pbar${warn?' warn':''}" style="width:${pct}%"></div></div>`:''}
       </div>
       ${a.on
-        ? `<button class="btn btn-gold" style="flex:0;padding:10px 16px;font-size:14px;" onclick="openCheckin(${a.id})">Check in</button>`
-        : `<button class="toggle" onclick="toggleApp(${a.id})"></button>`
-      }
+        ?`<button class="btn btn-gold" style="flex:0;padding:10px 16px;font-size:14px;" onclick="openCheckin(${a.id})">Check in</button>`
+        :`<button class="toggle" onclick="toggleApp(${a.id})"></button>`}
     </div>`;
   }).join('');
 }
 
-// ── RENDER INSIGHTS ────────────────────────────────────────────────────────────
-function renderInsights(){
-  const el = document.getElementById('panel-insights');
-  // streak
-  let html = `
-  <div class="streak-card">
-    <div class="streak-num">${state.streak}</div>
-    <div class="streak-label">day streak under all limits</div>
+function renderHomeSummary(){
+  const el = document.getElementById('homeSummary');
+  // Saved time: sum of (limit - used) for apps that are under limit
+  let savedSec = 0;
+  state.apps.filter(a=>a.on).forEach(a=>{
+    const used = state.stats[a.id]||0;
+    if(used < a.limitMin*60) savedSec += (a.limitMin*60 - used);
+  });
+  const savedMin = Math.round(savedSec/60);
+
+  // Worst offender
+  let worst = null, worstSec = 0;
+  state.apps.forEach(a=>{
+    const s = state.stats[a.id]||0;
+    if(s > worstSec){ worstSec=s; worst=a; }
+  });
+
+  let html = `<div class="summary-row">
+    <div class="summary-card gold-border">
+      <div class="summary-num">${state.streak}</div>
+      <div class="summary-label">day streak</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-num">${state.checkIns}</div>
+      <div class="summary-label">check-ins</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-num">${state.notNows}</div>
+      <div class="summary-label">resisted</div>
+    </div>
   </div>`;
 
-  // quote
-  const q = QUOTES[new Date().getDate() % QUOTES.length];
+  if(worst && worstSec > 0){
+    const worstMin = Math.round(worstSec/60);
+    const overLimit = worstSec > worst.limitMin*60;
+    html += `<div class="worst-card">
+      <div>
+        <div class="worst-label">⚠ Most used today</div>
+        <div class="worst-name">${worst.icon} ${worst.name}</div>
+      </div>
+      <div class="worst-stat">${worstMin}<span style="font-size:13px;color:var(--ink3)">m</span>${overLimit?` <span style="font-size:13px;color:var(--warm)">over</span>`:''}</div>
+    </div>`;
+  }
+
+  if(savedMin > 5){
+    html += `<div class="saved-card">
+      <div>
+        <div class="saved-label">✦ Time given back today</div>
+        <div style="font-size:13px;color:var(--ink2);font-style:italic;">You stayed under your limits</div>
+      </div>
+      <div class="saved-val">${savedMin}<span style="font-size:13px;color:var(--ink3)">m</span></div>
+    </div>`;
+  }
+
+  el.innerHTML = html;
+}
+
+// ── INSIGHTS ──────────────────────────────────────────────────────────────────
+function renderInsights(){
+  const el = document.getElementById('insightsContent');
+  const q = QUOTES[new Date().getDate()%QUOTES.length];
+  let html = `<div class="streak-card"><div class="streak-num">${state.streak}</div><div class="streak-lbl">day streak under all limits</div></div>`;
   html += `<div class="quote-card"><div class="quote-text">${q}</div></div>`;
 
-  // badges
+  // Badges
   html += `<div class="slabel">Milestones</div><div class="badges-grid">`;
   BADGES.forEach(b=>{
     const earned = state.earnedBadges.includes(b.id);
@@ -418,59 +482,97 @@ function renderInsights(){
   });
   html += `</div>`;
 
-  // today stats
+  // Weekly bar chart
+  html += `<div class="slabel">Weekly Usage</div><div class="chart-card">`;
+  if(!selectedChartAppId && state.apps.length) selectedChartAppId = state.apps[0].id;
+  html += `<div class="chart-app-tabs">`;
+  state.apps.forEach(a=>{
+    html += `<button class="chart-app-tab${a.id===selectedChartAppId?' active':''}" onclick="selectChartApp(${a.id})">${a.icon} ${a.name.split('/')[0].trim()}</button>`;
+  });
+  html += `</div>`;
+  // Build 7 days
+  const chartApp = state.apps.find(a=>a.id===selectedChartAppId);
+  if(chartApp){
+    const days7 = [];
+    for(let i=6;i>=0;i--){
+      const d = new Date(Date.now()-i*86400000);
+      const key = d.toDateString();
+      const isToday = i===0;
+      const secUsed = isToday ? (state.stats[chartApp.id]||0) : (state.weeklyStats[key]?.[chartApp.id]||0);
+      days7.push({label:DAYS[d.getDay()],secUsed,limitSec:chartApp.limitMin*60,isToday});
+    }
+    const maxSec = Math.max(...days7.map(d=>d.secUsed), chartApp.limitMin*60);
+    html += `<div class="bar-chart">`;
+    days7.forEach(d=>{
+      const hPct = maxSec>0?Math.max(4,(d.secUsed/maxSec)*100):4;
+      const over = d.secUsed>d.limitSec;
+      html += `<div class="day-col">
+        <div class="day-bar-wrap"><div class="day-bar${d.isToday?' today':''}${over?' over':''}" style="height:${hPct}%"></div></div>
+        <div class="day-lbl">${d.isToday?'Now':d.label}</div>
+      </div>`;
+    });
+    html += `</div>`;
+    html += `<div style="font-size:12px;color:var(--ink3);margin-top:10px;font-style:italic;">Limit: ${chartApp.limitMin} min/day · Gold = today · Red = over limit</div>`;
+  }
+  html += `</div>`;
+
+  // Today per app
   html += `<div class="slabel">Today's Usage</div>`;
-  if(!state.apps.length){html+='<div style="color:var(--ink3);font-style:italic;padding:20px 0;text-align:center;">No apps configured.</div>';}
   state.apps.forEach(a=>{
     const usedSec = state.stats[a.id]||0;
     const usedMin = Math.round(usedSec/60);
     const pct = Math.min(100,(usedSec/(a.limitMin*60))*100);
-    html += `
-    <div class="insight-card">
+    html += `<div class="insight-card">
       <div class="insight-row">
-        <div class="insight-left">
-          <div class="insight-icon">${a.icon}</div>
-          <div><div class="insight-label">${a.name}</div><div class="insight-sub">Limit: ${a.limitMin} min · ${pct>0?Math.round(pct)+'% used':'No sessions'}</div></div>
+        <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:0">
+          <span style="font-size:22px">${a.icon}</span>
+          <div><div style="font-size:15px;font-weight:600">${a.name}</div><div style="font-size:12px;color:var(--ink3)">Limit: ${a.limitMin} min · ${pct>0?Math.round(pct)+'% used':'No sessions'}</div></div>
         </div>
-        <div style="text-align:right"><div class="insight-val">${usedMin}</div><div class="insight-unit">min</div></div>
+        <div style="text-align:right;flex-shrink:0"><div style="font-size:28px;font-style:italic;color:var(--gold2)">${usedMin}</div><div style="font-size:12px;color:var(--ink3)">min</div></div>
       </div>
       <div class="bar-wrap"><div class="bar-fill${pct>80?' warn':''}" style="width:${pct}%"></div></div>
     </div>`;
   });
 
-  // global counts
-  html += `
-  <div class="slabel" style="margin-top:20px">All Time</div>
+  // Reflections
+  html += `<div class="slabel" style="margin-top:8px">Reflections</div>`;
+  if(!state.reflectionLog.length){
+    html += `<div style="color:var(--ink3);font-style:italic;padding:16px 0;font-size:14px;">No reflections yet. After 9pm you'll be prompted.</div>`;
+  } else {
+    const recent = [...state.reflectionLog].reverse().slice(0,7);
+    const moods = ['','😣','😕','😐','🙂','😌'];
+    recent.forEach(r=>{
+      html += `<div class="reflection-entry">
+        <div class="reflection-date">${r.date} ${moods[r.mood]||''}</div>
+        ${r.note?`<div class="reflection-note">"${r.note}"</div>`:''}
+      </div>`;
+    });
+  }
+
+  html += `<div class="slabel" style="margin-top:16px">All Time</div>
   <div class="insight-card">
-    <div class="insight-row" style="margin-bottom:10px">
-      <span style="color:var(--ink2)">Total check-ins</span>
-      <span class="insight-val" style="font-size:22px">${state.checkIns}</span>
-    </div>
-    <div class="insight-row" style="margin-bottom:10px">
-      <span style="color:var(--ink2)">Urges resisted</span>
-      <span class="insight-val" style="font-size:22px">${state.notNows}</span>
-    </div>
-    <div class="insight-row">
-      <span style="color:var(--ink2)">Reflections logged</span>
-      <span class="insight-val" style="font-size:22px">${state.reflections}</span>
-    </div>
+    <div class="insight-row" style="margin-bottom:10px"><span style="color:var(--ink2)">Total check-ins</span><span style="font-size:22px;font-style:italic;color:var(--gold2)">${state.checkIns}</span></div>
+    <div class="insight-row" style="margin-bottom:10px"><span style="color:var(--ink2)">Urges resisted</span><span style="font-size:22px;font-style:italic;color:var(--gold2)">${state.notNows}</span></div>
+    <div class="insight-row"><span style="color:var(--ink2)">Reflections logged</span><span style="font-size:22px;font-style:italic;color:var(--gold2)">${state.reflectionCount||0}</span></div>
   </div>`;
 
   el.innerHTML = html;
 }
 
-// ── RENDER SETTINGS ────────────────────────────────────────────────────────────
+function selectChartApp(id){ selectedChartAppId=id; renderInsights(); }
+
+// ── SETTINGS ──────────────────────────────────────────────────────────────────
 function renderSettings(){
-  const el = document.getElementById('settingsAppList');
-  el.innerHTML = state.apps.map(a=>`
+  document.getElementById('settingsAppList').innerHTML = state.apps.map(a=>`
     <div class="settings-card">
       <div class="s-row">
-        <div style="display:flex;align-items:center;gap:10px;flex:1">
+        <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:0">
           <span style="font-size:22px">${a.icon}</span>
-          <div><div class="s-row-label">${a.name}</div><div class="s-row-sub">Limit: ${a.limitMin} min</div></div>
+          <div><div class="s-row-label">${a.name}</div><div class="s-row-sub">Limit: ${a.limitMin} min · "${(a.msg||'Be present.').slice(0,30)}"</div></div>
         </div>
-        <div style="display:flex;gap:8px;align-items:center">
+        <div style="display:flex;gap:7px;align-items:center;flex-shrink:0">
           <button class="toggle${a.on?' on':''}" onclick="toggleApp(${a.id})"></button>
+          <button class="del-btn" style="background:rgba(212,197,160,.12);color:var(--gold);" onclick="openEditModal(${a.id})">Edit</button>
           <button class="del-btn" onclick="deleteApp(${a.id})">Remove</button>
         </div>
       </div>
@@ -482,105 +584,108 @@ function renderSettings(){
     <div class="s-row">
       <span style="font-size:14px;font-style:italic;flex:1;color:var(--ink2)">"${m}"</span>
       <button class="del-btn" onclick="removeMsg(${i})">Remove</button>
-    </div>`).join('')+`</div>`;
+    </div>`).join('')+'</div>';
 }
 
-// ── CHECK-IN FLOW ──────────────────────────────────────────────────────────────
+// ── CHECK-IN ──────────────────────────────────────────────────────────────────
 function openCheckin(id){
   const a = state.apps.find(x=>x.id===id);
   if(!a)return;
   activeAppId = id;
-  document.getElementById('ciIcon').textContent = a.icon;
-  document.getElementById('ciIcon').style.background = a.bg||'var(--surface2)';
+  const ci = document.getElementById('ciIcon');
+  ci.textContent = a.icon;
+  ci.style.background = a.bg||'var(--surface2)';
   document.getElementById('ciName').textContent = a.name;
   document.getElementById('ciLimit').textContent = `${a.limitMin}-minute limit`;
-  document.getElementById('intentInput').value = '';
+  document.getElementById('intentInput').value='';
   document.getElementById('checkinOverlay').classList.add('open');
   setTimeout(()=>document.getElementById('intentInput').focus(),400);
 }
-function handleCheckinBg(e){if(e.target===document.getElementById('checkinOverlay'))closeCheckin();}
 function closeCheckin(){ document.getElementById('checkinOverlay').classList.remove('open'); }
 
 function notNow(){
   closeCheckin();
   state.notNows++;
-  checkBadges();
-  save();
+  checkBadges(); save();
   const t = document.getElementById('nnToast');
   t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2500);
   renderHome();
 }
 
+// ── TIMER ─────────────────────────────────────────────────────────────────────
 function startTimer(){
   const a = state.apps.find(x=>x.id===activeAppId);
   if(!a)return;
   closeCheckin();
   state.checkIns++;
   checkBadges();
-  save();
-
-  timerElapsed = 0;
-  timerExtended = 0;
-  timerAlerted = false;
-  timerLimit = a.limitMin * 60;
-  const allMsgs = [a.msg, ...state.customMsgs, ...QUOTES].filter(Boolean);
+  timerExtended=0; timerAlerted=false;
+  timerLimit = a.limitMin*60;
+  const allMsgs = [a.msg,...state.customMsgs,...QUOTES].filter(Boolean);
   const quote = allMsgs[Math.floor(Math.random()*allMsgs.length)];
-
+  const session = {appId:activeAppId, startMs:Date.now(), limitSec:timerLimit, extended:0};
+  localStorage.setItem('bepresent_session', JSON.stringify(session));
   document.getElementById('timerAppLabel').textContent = a.name;
   document.getElementById('timerQuote').textContent = quote;
   document.getElementById('timerOverlay').classList.add('open');
-  updateTimerRing();
-
+  save();
   clearInterval(timerInterval);
-  timerInterval = setInterval(()=>{
-    timerElapsed++;
-    if(!state.stats[activeAppId]) state.stats[activeAppId]=0;
-    state.stats[activeAppId]++;
-    if(timerElapsed % 30 === 0) save();
-    updateTimerRing();
-    if(timerElapsed >= timerLimit + timerExtended*300 && !timerAlerted){
-      timerAlerted = true;
-      fireTimeUp(a);
-    }
-    // 80% warning — pulse
-    if(timerElapsed === Math.floor((timerLimit+timerExtended*300)*0.8)){
-      document.getElementById('timerRing').classList.add('pulsing');
-      document.getElementById('ringFill').style.stroke = 'var(--warm)';
-    }
-  },1000);
+  timerInterval = setInterval(tickTimer,1000);
+  tickTimer();
 }
 
-function updateTimerRing(){
-  const total = timerLimit + timerExtended*300;
-  const remaining = Math.max(0, total - timerElapsed);
-  const pct = Math.min(1, timerElapsed/total);
+function tickTimer(){
+  const raw = localStorage.getItem('bepresent_session');
+  if(!raw){clearInterval(timerInterval);return;}
+  const session = JSON.parse(raw);
+  const a = state.apps.find(x=>x.id===session.appId);
+  if(!a){clearInterval(timerInterval);return;}
+  const elapsedSec = Math.floor((Date.now()-session.startMs)/1000);
+  const totalSec = session.limitSec + (session.extended||0)*300;
+  const remaining = Math.max(0, totalSec-elapsedSec);
+  const pct = Math.min(1, elapsedSec/totalSec);
+  state.stats[session.appId] = elapsedSec;
+  if(elapsedSec%30===0) save();
   const circ = 2*Math.PI*88;
   document.getElementById('ringFill').style.strokeDashoffset = circ*pct;
-  const m = Math.floor(remaining/60), s = remaining%60;
+  const m=Math.floor(remaining/60), s=remaining%60;
   document.getElementById('ringTime').textContent = `${m}:${String(s).padStart(2,'0')}`;
+  if(pct>=0.8 && !document.getElementById('timerRing').classList.contains('pulsing')){
+    document.getElementById('timerRing').classList.add('pulsing');
+    document.getElementById('ringFill').style.stroke='var(--warm)';
+  }
+  if(remaining<=0 && !timerAlerted){ timerAlerted=true; fireTimeUp(a); }
 }
 
 function extendTimer(){
-  timerExtended++;
-  timerAlerted = false;
+  const raw = localStorage.getItem('bepresent_session');
+  if(!raw)return;
+  const session = JSON.parse(raw);
+  session.extended = (session.extended||0)+1;
+  localStorage.setItem('bepresent_session', JSON.stringify(session));
+  timerAlerted=false;
   document.getElementById('timerRing').classList.remove('pulsing');
-  document.getElementById('ringFill').style.stroke = 'var(--gold)';
-  updateTimerRing();
+  document.getElementById('ringFill').style.stroke='var(--gold)';
+  tickTimer();
 }
 
 function stopTimer(){
-  clearInterval(timerInterval);
-  timerInterval = null;
-  activeAppId = null;
-  timerAlerted = false;
+  const raw = localStorage.getItem('bepresent_session');
+  if(raw){
+    const session = JSON.parse(raw);
+    state.stats[session.appId] = Math.floor((Date.now()-session.startMs)/1000);
+  }
+  localStorage.removeItem('bepresent_session');
+  clearInterval(timerInterval); timerInterval=null;
+  activeAppId=null; timerAlerted=false;
   document.getElementById('timerOverlay').classList.remove('open');
   document.getElementById('timeupOverlay').classList.remove('open');
   document.getElementById('timerRing').classList.remove('pulsing');
-  document.getElementById('ringFill').style.stroke = 'var(--gold)';
+  document.getElementById('ringFill').style.stroke='var(--gold)';
   updateStreakAndSave();
   renderHome();
-  renderInsights();
+  if(document.getElementById('panel-insights').classList.contains('active')) renderInsights();
 }
 
 function fireTimeUp(a){
@@ -589,30 +694,27 @@ function fireTimeUp(a){
   document.getElementById('timeupOverlay').classList.add('open');
   if(navigator.vibrate) navigator.vibrate([250,100,250]);
   if('Notification' in window && Notification.permission==='granted'){
-    new Notification('Be Present',{body:`${a.name}: ${a.msg}`,icon:'🌿'});
+    new Notification('Be Present',{body:`${a.name}: ${a.msg}`});
   }
 }
 function closeTimeup(){ document.getElementById('timeupOverlay').classList.remove('open'); }
 
-// ── STREAK & BADGES ────────────────────────────────────────────────────────────
+// ── STREAK & BADGES ───────────────────────────────────────────────────────────
 function updateStreakAndSave(){
   const today = new Date().toDateString();
-  const allUnder = state.apps.filter(a=>a.on).every(a=>(state.stats[a.id]||0) <= a.limitMin*60);
+  const allUnder = state.apps.filter(a=>a.on).every(a=>(state.stats[a.id]||0)<=a.limitMin*60);
   if(allUnder){
     const yesterday = new Date(Date.now()-86400000).toDateString();
-    if(state.lastStreakDate === yesterday || state.lastStreakDate === today){
-      if(state.lastStreakDate !== today) state.streak++;
-    } else {
-      state.streak = 1;
-    }
-    state.lastStreakDate = today;
+    if(state.lastStreakDate===yesterday||state.lastStreakDate===today){
+      if(state.lastStreakDate!==today) state.streak++;
+    } else { state.streak=1; }
+    state.lastStreakDate=today;
   }
-  checkBadges();
-  save();
+  checkBadges(); save();
 }
 
 function checkBadges(){
-  const earn = id=>{ if(!state.earnedBadges.includes(id)) state.earnedBadges.push(id); };
+  const earn=id=>{if(!state.earnedBadges.includes(id))state.earnedBadges.push(id);};
   if(state.checkIns>=1) earn('first');
   if(state.streak>=3) earn('s3');
   if(state.streak>=7) earn('s7');
@@ -620,58 +722,132 @@ function checkBadges(){
   if(state.checkIns>=10) earn('ci10');
   if(state.checkIns>=50) earn('ci50');
   if(state.notNows>=5) earn('nn5');
-  if(state.reflections>=7) earn('ref7');
+  if((state.reflectionCount||0)>=7) earn('ref7');
 }
 
-// ── APP MANAGEMENT ─────────────────────────────────────────────────────────────
+// ── REFLECTION ────────────────────────────────────────────────────────────────
+function selectMood(n){
+  selectedMood=n;
+  document.querySelectorAll('.mood-btn').forEach(b=>{
+    b.classList.toggle('sel', parseInt(b.dataset.mood)===n);
+  });
+}
+
+function saveReflection(){
+  if(!selectedMood) return;
+  const note = document.getElementById('reflectionText').value.trim();
+  if(!state.reflectionLog) state.reflectionLog=[];
+  state.reflectionLog.push({date:new Date().toLocaleDateString(),mood:selectedMood,note,ts:Date.now()});
+  state.reflectionCount = (state.reflectionCount||0)+1;
+  selectedMood=0;
+  document.getElementById('reflectionText').value='';
+  document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('sel'));
+  document.getElementById('reflectionOverlay').classList.remove('open');
+  checkBadges(); save();
+  if(document.getElementById('panel-insights').classList.contains('active')) renderInsights();
+}
+
+function checkReflectionPrompt(){
+  const h = new Date().getHours();
+  if(h>=21){
+    const today = new Date().toDateString();
+    const alreadyDone = state.reflectionLog && state.reflectionLog.some(r=>new Date(r.ts).toDateString()===today);
+    if(!alreadyDone){
+      setTimeout(()=>document.getElementById('reflectionOverlay').classList.add('open'), 3000);
+    }
+  }
+}
+
+// ── APP MGMT ──────────────────────────────────────────────────────────────────
 function toggleApp(id){
-  const a = state.apps.find(x=>x.id===id);
-  if(a){ a.on=!a.on; save(); renderHome(); renderSettings(); }
+  const a=state.apps.find(x=>x.id===id);
+  if(a){a.on=!a.on;save();renderHome();renderSettings();}
 }
 function deleteApp(id){
-  if(!confirm('Remove this app limit?')) return;
-  state.apps = state.apps.filter(x=>x.id!==id);
-  save(); renderHome(); renderSettings();
+  if(!confirm('Remove this app limit?'))return;
+  state.apps=state.apps.filter(x=>x.id!==id);
+  save();renderHome();renderSettings();
 }
 
-// ── MODAL ──────────────────────────────────────────────────────────────────────
+// ── MODAL ─────────────────────────────────────────────────────────────────────
 function openModal(){
-  selectedEmoji='📱';
+  editingAppId=null; selectedEmoji='📱';
   document.getElementById('mName').value='';
   document.getElementById('mMsg').value='';
   document.getElementById('mLimit').value='15';
+  document.getElementById('modalTitle').textContent='Add App Limit';
+  document.getElementById('modalSaveBtn').textContent='Save';
+  document.getElementById('popularApps').style.display='block';
   renderEmojiGrid();
   document.getElementById('modalOverlay').classList.add('open');
   setTimeout(()=>document.getElementById('mName').focus(),400);
 }
-function handleModalBg(e){if(e.target===document.getElementById('modalOverlay')) document.getElementById('modalOverlay').classList.remove('open');}
+function openEditModal(id){
+  const a=state.apps.find(x=>x.id===id);
+  if(!a)return;
+  editingAppId=id; selectedEmoji=a.icon;
+  document.getElementById('mName').value=a.name;
+  document.getElementById('mMsg').value=a.msg||'';
+  document.getElementById('mLimit').value=a.limitMin;
+  document.getElementById('modalTitle').textContent='Edit App';
+  document.getElementById('modalSaveBtn').textContent='Update';
+  document.getElementById('popularApps').style.display='none';
+  renderEmojiGrid();
+  document.getElementById('modalOverlay').classList.add('open');
+  setTimeout(()=>document.getElementById('mName').focus(),400);
+}
 function renderEmojiGrid(){
   document.getElementById('emojiGrid').innerHTML=EMOJIS.map(e=>`<button class="emo-btn${e===selectedEmoji?' sel':''}" onclick="selectEmoji('${e}')">${e}</button>`).join('');
 }
-function selectEmoji(e){ selectedEmoji=e; renderEmojiGrid(); }
-function saveNewApp(){
-  const name = document.getElementById('mName').value.trim();
-  if(!name){ document.getElementById('mName').focus(); return; }
-  state.apps.push({id:Date.now(),name,icon:selectedEmoji,limitMin:parseInt(document.getElementById('mLimit').value),on:true,msg:document.getElementById('mMsg').value.trim()||'Be present.',bg:'#252b23'});
+function selectEmoji(e){selectedEmoji=e;renderEmojiGrid();}
+function autoSuggestIcon(name){
+  if(!name)return;
+  const s=suggestIcon(name);
+  if(s&&s!==selectedEmoji){selectedEmoji=s;renderEmojiGrid();}
+}
+function quickAdd(name,icon,limitMin){
+  if(state.apps.find(a=>a.name.toLowerCase()===name.toLowerCase())){
+    document.getElementById('mName').value=name;
+    selectedEmoji=icon;
+    document.getElementById('mLimit').value=limitMin;
+    renderEmojiGrid();
+    return;
+  }
+  state.apps.push({id:Date.now(),name,icon,limitMin,on:true,msg:'Time to step away.',bg:'#252b23'});
   save();
   document.getElementById('modalOverlay').classList.remove('open');
-  renderHome(); renderSettings();
+  renderHome();renderSettings();
+}
+function saveApp(){
+  const name=document.getElementById('mName').value.trim();
+  if(!name){document.getElementById('mName').focus();return;}
+  const limitMin=parseInt(document.getElementById('mLimit').value);
+  const msg=document.getElementById('mMsg').value.trim()||'Be present.';
+  if(editingAppId!==null){
+    const a=state.apps.find(x=>x.id===editingAppId);
+    if(a){a.name=name;a.icon=selectedEmoji;a.limitMin=limitMin;a.msg=msg;}
+  } else {
+    state.apps.push({id:Date.now(),name,icon:selectedEmoji,limitMin,on:true,msg,bg:'#252b23'});
+  }
+  save();
+  document.getElementById('modalOverlay').classList.remove('open');
+  renderHome();renderSettings();
 }
 
 // ── SETTINGS ACTIONS ──────────────────────────────────────────────────────────
 function addCustomMsg(){
-  const v = document.getElementById('customMsgInput').value.trim();
+  const v=document.getElementById('customMsgInput').value.trim();
   if(!v)return;
   state.customMsgs.push(v);
   document.getElementById('customMsgInput').value='';
-  save(); renderSettings();
+  save();renderSettings();
 }
-function removeMsg(i){ state.customMsgs.splice(i,1); save(); renderSettings(); }
-function resetStats(){ if(confirm('Reset today\'s stats?')){state.stats={};save();renderHome();renderInsights();} }
-function clearAll(){ if(confirm('Clear ALL data?')){localStorage.removeItem(SK);location.reload();} }
+function removeMsg(i){state.customMsgs.splice(i,1);save();renderSettings();}
+function resetStats(){if(confirm("Reset today's stats?")){state.stats={};save();renderHome();renderInsights();}}
+function clearAll(){if(confirm('Clear ALL data?')){localStorage.removeItem(SK);localStorage.removeItem('bepresent_session');location.reload();}}
 
-// ── TABS ───────────────────────────────────────────────────────────────────────
-function switchTab(id, btn){
+// ── TABS ──────────────────────────────────────────────────────────────────────
+function switchTab(id,btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
@@ -680,14 +856,35 @@ function switchTab(id, btn){
   if(id==='settings') renderSettings();
 }
 
-// ── INIT ───────────────────────────────────────────────────────────────────────
-load(); renderHome(); renderEmojiGrid();
+// ── INIT ──────────────────────────────────────────────────────────────────────
+load(); renderHome(); renderEmojiGrid(); checkReflectionPrompt();
 if('Notification' in window && Notification.permission==='default'){
   setTimeout(()=>Notification.requestPermission(),2000);
 }
-// Auto-reset stats at midnight
-const msToMidnight = new Date().setHours(24,0,0,0)-Date.now();
-setTimeout(()=>{ state.stats={}; state.statsDate=new Date().toDateString(); save(); renderHome(); }, msToMidnight);
+// Midnight reset
+const msToMidnight=new Date().setHours(24,0,0,0)-Date.now();
+setTimeout(()=>{archiveDailyStats();state.stats={};state.statsDate=new Date().toDateString();save();renderHome();},msToMidnight);
+
+// Resume timer on return from background
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState!=='visible')return;
+  const raw=localStorage.getItem('bepresent_session');
+  if(!raw)return;
+  const session=JSON.parse(raw);
+  const a=state.apps.find(x=>x.id===session.appId);
+  if(!a)return;
+  activeAppId=session.appId;
+  timerLimit=session.limitSec;
+  timerExtended=session.extended||0;
+  const elapsedSec=Math.floor((Date.now()-session.startMs)/1000);
+  const totalSec=session.limitSec+timerExtended*300;
+  document.getElementById('timerAppLabel').textContent=a.name;
+  document.getElementById('timerOverlay').classList.add('open');
+  clearInterval(timerInterval);
+  timerInterval=setInterval(tickTimer,1000);
+  tickTimer();
+  if(elapsedSec>=totalSec && !timerAlerted){timerAlerted=true;fireTimeUp(a);}
+});
 </script>
 </body>
 </html>
